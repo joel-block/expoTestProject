@@ -1,47 +1,71 @@
+const spriteBaseURL = "https://pokeapi.co/api/v2/pokemon-form";
+
+function getSpriteURL(name) {
+  let url = "";
+  switch (name) {
+    case "furfrou":
+      url = `${spriteBaseURL}/furfrou-natural`;
+      break;
+    case "alcremie":
+      url = `${spriteBaseURL}/alcremie-vanilla-cream`;
+      break;
+    case "unown":
+      url = `${spriteBaseURL}/unown-a`;
+      break;
+    case "burmy":
+      url = `${spriteBaseURL}/burmy-plant`;
+      break;
+    case "cherrim":
+      url = `${spriteBaseURL}/cherrim-sunshine`;
+      break;
+    case "shellos":
+      url = `${spriteBaseURL}/shellos-east`;
+      break;
+    case "gastrodon":
+      url = `${spriteBaseURL}/gastrodon-east`;
+      break;
+    case "arceus":
+      url = `${spriteBaseURL}/arceus-normal`;
+      break;
+    case "deerling":
+      url = `${spriteBaseURL}/deerling-spring`;
+      break;
+    case "sawsbuck":
+      url = `${spriteBaseURL}/sawsbuck-spring`;
+      break;
+    case "vivillon":
+      url = `${spriteBaseURL}/vivillon-meadow`;
+      break;
+    case "flabebe":
+      url = `${spriteBaseURL}/flabebe-red`;
+      break;
+    case "floette":
+      url = `${spriteBaseURL}/floette-red`;
+      break;
+    case "florges":
+      url = `${spriteBaseURL}/florges-red`;
+      break;
+    case "xerneas":
+      url = `${spriteBaseURL}/xerneas-active`;
+      break;
+    case "silvally":
+      url = `${spriteBaseURL}/silvally-normal`;
+      break;
+    case "sinistea":
+      url = `${spriteBaseURL}/sinistea-phony`;
+      break;
+    case "polteageist":
+      url = `${spriteBaseURL}/polteageist-phony`;
+      break;
+    default:
+      url = `${spriteBaseURL}/${name}`;
+  }
+  return url;
+}
+
 export async function getSprite(name = "bulbasaur", shiny = false, setter) {
   try {
-    const response =
-      name === "furfrou"
-        ? await fetch("https://pokeapi.co/api/v2/pokemon-form/furfrou-natural/")
-        : name === "alcremie"
-        ? await fetch(
-            "https://pokeapi.co/api/v2/pokemon-form/alcremie-vanilla-cream/"
-          )
-        : name === "unown"
-        ? await fetch("https://pokeapi.co/api/v2/pokemon-form/unown-a/")
-        : name === "burmy"
-        ? await fetch("https://pokeapi.co/api/v2/pokemon-form/burmy-plant/")
-        : name === "cherrim"
-        ? await fetch(
-            "https://pokeapi.co/api/v2/pokemon-form/cherrim-sunshine/"
-          )
-        : name === "shellos"
-        ? await fetch("https://pokeapi.co/api/v2/pokemon-form/shellos-east/")
-        : name === "gastrodon"
-        ? await fetch("https://pokeapi.co/api/v2/pokemon-form/gastrodon-east/")
-        : name === "arceus"
-        ? await fetch("https://pokeapi.co/api/v2/pokemon-form/arceus-normal/")
-        : name === "deerling"
-        ? await fetch("https://pokeapi.co/api/v2/pokemon-form/deerling-spring/")
-        : name === "sawsbuck"
-        ? await fetch("https://pokeapi.co/api/v2/pokemon-form/sawsbuck-spring/")
-        : name === "vivillon"
-        ? await fetch("https://pokeapi.co/api/v2/pokemon-form/vivillon-meadow/")
-        : name === "flabebe"
-        ? await fetch("https://pokeapi.co/api/v2/pokemon-form/flabebe-red/")
-        : name === "floette"
-        ? await fetch("https://pokeapi.co/api/v2/pokemon-form/floette-red/")
-        : name === "florges"
-        ? await fetch("https://pokeapi.co/api/v2/pokemon-form/florges-red/")
-        : name === "xerneas"
-        ? await fetch("https://pokeapi.co/api/v2/pokemon-form/xerneas-active/")
-        : name === "silvally"
-        ? await fetch("https://pokeapi.co/api/v2/pokemon-form/silvally-normal/")
-        : name === "sinistea"
-        ? await fetch("https://pokeapi.co/api/v2/pokemon-form/sinistea-phony/")
-        : name === "polteageist"
-        ? await fetch("https://pokeapi.co/api/v2/pokemon-form/polteageist-phony/")
-        : await fetch(`https://pokeapi.co/api/v2/pokemon-form/${name}/`);
+    const response = await fetch(getSpriteURL(name));
     const pokemonForm = await response.json();
     const imageURL = shiny
       ? pokemonForm.sprites.front_shiny
