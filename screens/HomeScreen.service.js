@@ -3,6 +3,10 @@ export async function getSprite(name = "bulbasaur", shiny = false, setter) {
     const response =
       name === "furfrou"
         ? await fetch("https://pokeapi.co/api/v2/pokemon-form/furfrou-natural/")
+        : name === "alcremie"
+        ? await fetch(
+            "https://pokeapi.co/api/v2/pokemon-form/alcremie-vanilla-cream/"
+          )
         : await fetch(`https://pokeapi.co/api/v2/pokemon-form/${name}/`);
     const pokemonForm = await response.json();
     const imageURL = shiny
