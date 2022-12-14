@@ -17,6 +17,7 @@ const HomeScreen = () => {
   const [selectedPokemon, setSelectedPokemon] = useState({
     name: "Bulbasaur",
     lowerName: "bulbasaur",
+    id: 1,
   });
   const [pokemonImageURL, setPokemonImageURL] = useState(
     "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/1.png"
@@ -30,7 +31,7 @@ const HomeScreen = () => {
     navigation.setOptions({
       headerShown: false,
     });
-    getSprite(selectedPokemon.lowerName, isShiny, setPokemonImageURL);
+    getSprite(selectedPokemon.id, isShiny, setPokemonImageURL);
     getList(setPokemonList);
   }, [isShiny, selectedPokemon]);
 
